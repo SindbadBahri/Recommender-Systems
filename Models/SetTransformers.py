@@ -3,7 +3,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-#%%
+
+
 class SelfAttention(nn.Module):
     def __init__(self,k, heads):
         super(SelfAttention, self).__init__()
@@ -25,7 +26,7 @@ class SelfAttention(nn.Module):
         v = v.transpose(1,2).contiguous().view(batch_size, -1, self.heads*self.k)
         output = self.Wo(v)
         return output
-#%%
+
 class Masking(nn.Module):
     def __init__(self,k):
         super(Masking, self).__init__()
@@ -34,7 +35,7 @@ class Masking(nn.Module):
     def forward(self, x):
         x = x * self.mask
         return x
-#%%
+
 class TransformerBlock(nn.Module):
     def __init__(self, k, heads):
         super(TransformerBlock, self).__init__()
@@ -57,7 +58,7 @@ class TransformerBlock(nn.Module):
         x = x + value
         x = self.norm2(x)
         return x
-#%%
+
 class Masked(nn.Module):
     def __init__(self, k):
         super(Masked, self).__init__()
