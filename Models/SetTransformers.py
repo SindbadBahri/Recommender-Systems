@@ -66,8 +66,3 @@ class Masked(nn.Module):
     def forward(self, x):
         x = x * self.mask
         return x
-#%%
-inices = torch.triu_indices(6, 6, offset=1)
-# %%
-inices[0]
-# %%
